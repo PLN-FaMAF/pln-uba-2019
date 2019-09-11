@@ -3,11 +3,12 @@ from collections import defaultdict
 
 class BadBaselineTagger:
 
-    def __init__(self, tagged_sents):
+    def __init__(self, tagged_sents, default_tag='nc0s000'):
         """
         tagged_sents -- training sentences, each one being a list of pairs.
+        default_tag -- tag for all words.
         """
-        pass
+        self._default_tag = default_tag
 
     def tag(self, sent):
         """Tag a sentence.
@@ -21,7 +22,7 @@ class BadBaselineTagger:
 
         w -- the word.
         """
-        return 'nc0s000'
+        return self._default_tag
 
     def unknown(self, w):
         """Check if a word is unknown for the model.
@@ -33,7 +34,7 @@ class BadBaselineTagger:
 
 class BaselineTagger:
 
-    def __init__(self, tagged_sents, default_tag='nc0s000'):
+    def __init__(self, tagged_sents, default_tag=None):
         """
         tagged_sents -- training sentences, each one being a list of pairs.
         default_tag -- tag for unknown words.
